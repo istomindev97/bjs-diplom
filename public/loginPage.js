@@ -5,8 +5,6 @@ const userForm = new UserForm();
 userForm.loginFormCallback = function(data) {
   
     ApiConnector.login({ login: data.login, password: data.password }, (response) => {
-        console.log(response); 
-        
         if (response.success) {
             location.reload();
         } else {

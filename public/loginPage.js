@@ -4,7 +4,7 @@ const userForm = new UserForm();
 
 userForm.loginFormCallback = function(data) {
   
-    ApiConnector.login({ login: data.login, password: data.password }, (response) => {
+    ApiConnector.login(data, (response) => {
         if (response.success) {
             location.reload();
         } else {
@@ -15,7 +15,7 @@ userForm.loginFormCallback = function(data) {
 
 userForm.registerFormCallback = function(data) {
     
-    ApiConnector.register({ login: data.login, password: data.password }, (response) => {
+    ApiConnector.register(data, (response) => {
         console.log(response);
         if (response.success) {
             location.reload();

@@ -17,20 +17,18 @@ ApiConnector.current((response) => {
 	}
 });
 
-ApiConnector.getStocks((response) => {
-	if (response.success) {
-		ratesBoard.clearTable();
-		ratesBoard.fillTable(response.data);
-	}
-});
+function handleStocksResponse(response) {
+    if (response.success) {
+        console.log(response);
+        ratesBoard.clearTable();
+        ratesBoard.fillTable(response.data);
+    }
+}
+
+ApiConnector.getStocks(handleStocksResponse);
 
 setInterval(() => {
-	ApiConnector.getStocks((response) => {
-		if (response.success) {
-			ratesBoard.clearTable();
-			ratesBoard.fillTable(response.data);
-		}
-	});
+    ApiConnector.getStocks(handleStocksResponse);
 }, 60000);
 
 moneyManager.addMoneyCallback = function(data) {
